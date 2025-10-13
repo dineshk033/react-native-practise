@@ -1,6 +1,11 @@
-import "../global.css";
-import { Slot } from "expo-router";
+// app/_layout.tsx
+import { Stack } from "expo-router";
 
 export default function Layout() {
-  return <Slot />;
+  return (
+    <Stack
+      initialRouteName="(store)/index"
+      screenOptions={{ headerShown: false }}
+    />
+  );
 }
