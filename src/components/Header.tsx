@@ -1,28 +1,51 @@
-import { View, Text } from "react-native";
-import { Link } from "expo-router";
-import CustomSafeArea from "./safe-area-common";
-// import
-export function Header() {
-  return (
-    // <CustomSafeArea>
-    <View className="flex-row items-center justify-between px-4 py-3 bg-blue-500 border-b border-gray-200">
-      {/* <StatusBar style="light" /> */}
-      <Link href="/" asChild>
-        <Text className="text-xl font-semibold">ShopLite</Text>
-      </Link>
+import React from "react";
+import { View, TextInput, Pressable, Platform } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { StatusBar } from "expo-status-bar";
+import { useRouter } from "expo-router";
 
-      <View className=" flex flex-row gap-x-4">
-        <Link href="/categories" asChild>
-          <Text className="text-base">Categories</Text>
-        </Link>
-        <Link href="/cart" asChild>
-          <Text className="text-base">Cart</Text>
-        </Link>
-        <Link href="/login" asChild>
-          <Text className="text-base">Login</Text>
-        </Link>
+export default function StoreHeader() {
+  const router = useRouter();
+
+  return (
+    <View className={`flex-row items-center gap-2 px-3 `}>
+      <StatusBar style="dark" animated />
+
+      {/* Search field */}
+      <View className="flex-1 flex-row items-center  rounded-xl bg-slate-50 border border-slate-200 px-2">
+        <Ionicons
+          name="search-outline"
+          size={18}
+          color="#60a5fa"
+          style={{ marginRight: 6 }}
+        />
+        <TextInput
+          placeholder="Search product"
+          placeholderTextColor="#9ca3af"
+          className="flex-1 text-base text-gray-900 px-2 py-3"
+          returnKeyType="search"
+          onFocus={() => router.push("/search-product")}
+        />
       </View>
+
+      {/* Favorite */}
+      <Pressable
+        onPress={() => router.push("/favorites")}
+        hitSlop={10}
+        className="p-1.5 relative"
+      >
+        <Ionicons name="heart-outline" size={22} color="#111827" />
+      </Pressable>
+
+      {/* Notification with badge */}
+      <Pressable
+        onPress={() => router.push("/notifications")}
+        hitSlop={10}
+        className="p-1.5 relative"
+      >
+        <Ionicons name="notifications-outline" size={22} color="#111827" />
+        <View className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500" />
+      </Pressable>
     </View>
-    // </CustomSafeArea>
   );
 }
