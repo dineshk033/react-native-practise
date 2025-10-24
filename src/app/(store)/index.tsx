@@ -19,7 +19,7 @@ export default function Rootcomponent() {
           viewAllRoute="/search-product"
         />
         <HCarousel items={MOCKPRODUCT} />
-        <SectionHeader title="All Products" viewAllRoute="/category/12" />
+        <SectionHeader title="All Products" viewAllRoute="/login" />
         <ProductList products={MOCKPRODUCT} />
       </View>
     </CustomSafeArea>
